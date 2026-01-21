@@ -2,8 +2,8 @@ const db = require('../config/db');
 
 exports.create = async (req, res) => {
     try {
-        const { idOpintojakso, nimi } = req.body;
-        await db.query("INSERT INTO Opintojakso (idOpintojakso, nimi) VALUES (?, ?)", [idOpintojakso, nimi]);
+        const { Nimi, Laajuus, Koodi } = req.body;
+        await db.query("INSERT INTO Opintojakso (Nimi, Laajuus, Koodi) VALUES (?, ?, ?)", [Nimi, Laajuus, Koodi]);
         res.json({ message: "Opintojakso lisätty", data: req.body });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -21,8 +21,9 @@ exports.getAll = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const { idOpintojakso, nimi } = req.body;
-        await db.query("UPDATE Opintojakso SET nimi = ? WHERE idOpintojakso = ?", [nimi, idOpintojakso]);
+        const idOpintojakso = req.params.id;
+        const { Nimi, Laajuus, Koodi } = req.body;
+        await db.query("UPDATE Opintojakso SET nimi = ?, laajuus = ?, koodi = ? WHERE idOpintojakso = ?", [Nimi, Laajuus, Koodi, idOpintojakso]);
         res.json({ message: "Opintojakso päivitetty", data: req.body });
     } catch (err) {
         res.status(500).json({ error: err.message });
