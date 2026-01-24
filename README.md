@@ -1,4 +1,5 @@
 # "Opintorekisteri" -tietokanta
+![ER_KAAVIO](./ER_KAAVIO.png)
 
 ## REST API:a ja MVC-arkkitehtuuria käyttävä MySQL/Node/Express -sovellus ilman käyttöliittymää
 
