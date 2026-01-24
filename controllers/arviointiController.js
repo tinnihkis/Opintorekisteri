@@ -1,3 +1,4 @@
+const db = require('../config/db'); // MySQL-yhteys
 const Arviointi = require('../models/arviointi');
 
 // CREATE
@@ -39,6 +40,16 @@ exports.delete = async (req, res) => {
         const { id } = req.params;
         await Arviointi.deleteArviointi(id);
         res.json({ message: "Arviointi poistettu" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+// GET: Opiskelijan keskiarvo
+exports.getKeskiarvo = async (req, res) => {
+    try {
+        const { id } = req.params; // id opiskelijalle URL:sta
+        const [rows] = await db.query("CALL GetOpiskelijanKeskiarvo(?)", [id]);
+        res.json(rows[0][0]); // palauttaa esim. { keskiarvo: 4.5 }
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
