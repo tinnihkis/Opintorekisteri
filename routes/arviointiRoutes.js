@@ -4,7 +4,7 @@ const controller = require('../controllers/arviointiController');
 
 router.get('/', controller.getAll);
 router.post('/', controller.create);
-router.put('/', controller.update);
-router.delete('/:idopiskelija/:idOpintojakso', controller.delete);
+router.put('/:id', controller.update);
+router.delete('/:id', controller.delete);
 
 module.exports = router;

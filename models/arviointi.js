@@ -1,29 +1,30 @@
-const db = require("../config/db");
+const db = require('../config/db');
 
-exports.getAll = (callback) => {
-  db.query("SELECT * FROM Arviointi", callback);
+// Hae kaikki arvioinnit
+exports.getAllArvioinnit = () => {
+    return db.query('SELECT * FROM Arviointi');
 };
 
-exports.create = (data, callback) => {
-  db.query(
-    "INSERT INTO Arviointi (idopiskelija, idOpintojakso, Paivamaara, Arvosana) VALUES (?, ?, ?, ?)",
-    [data.idopiskelija, data.idOpintojakso, data.Paivamaara, data.Arvosana],
-    callback
-  );
+// Lisää uusi arviointi
+exports.createArviointi = (opiskelija_id, opintojakso_id, arvosana) => {
+    return db.query(
+        'INSERT INTO Arviointi (opiskelija_id, opintojakso_id, arvosana) VALUES (?, ?, ?)',
+        [opiskelija_id, opintojakso_id, arvosana]
+    );
 };
 
-exports.update = (data, callback) => {
-  db.query(
-    "UPDATE Arviointi SET Arvosana = ?, Paivamaara = ? WHERE idopiskelija = ? AND idOpintojakso = ?",
-    [data.Arvosana, data.Paivamaara, data.idopiskelija, data.idOpintojakso],
-    callback
-  );
+// Päivitä arviointi
+exports.updateArviointi = (id, arvosana) => {
+    return db.query(
+        'UPDATE Arviointi SET arvosana = ? WHERE arviointi_id = ?',
+        [arvosana, id]
+    );
 };
 
-exports.delete = (ids, callback) => {
-  db.query(
-    "DELETE FROM Arviointi WHERE idopiskelija = ? AND idOpintojakso = ?",
-    [ids.idopiskelija, ids.idOpintojakso],
-    callback
-  );
+// Poista arviointi
+exports.deleteArviointi = (id) => {
+    return db.query(
+        'DELETE FROM Arviointi WHERE arviointi_id = ?',
+        [id]
+    );
 };

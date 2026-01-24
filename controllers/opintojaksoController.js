@@ -1,39 +1,43 @@
-const db = require('../config/db');
+const Opintojakso = require('../models/opintojakso');
 
+// CREATE
 exports.create = async (req, res) => {
     try {
         const { Nimi, Laajuus, Koodi } = req.body;
-        await db.query("INSERT INTO Opintojakso (Nimi, Laajuus, Koodi) VALUES (?, ?, ?)", [Nimi, Laajuus, Koodi]);
-        res.json({ message: "Opintojakso lisätty", data: req.body });
+        await Opintojakso.createOpintojakso(Nimi, Laajuus, Koodi);
+        res.json({ message: "Opintojakso lisätty" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
 
+// READ
 exports.getAll = async (req, res) => {
     try {
-        const [rows] = await db.query("SELECT * FROM Opintojakso");
+        const [rows] = await Opintojakso.getAllOpintojaksot();
         res.json(rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
 
+// UPDATE
 exports.update = async (req, res) => {
     try {
-        const idOpintojakso = req.params.id;
+        const { id } = req.params;
         const { Nimi, Laajuus, Koodi } = req.body;
-        await db.query("UPDATE Opintojakso SET nimi = ?, laajuus = ?, koodi = ? WHERE idOpintojakso = ?", [Nimi, Laajuus, Koodi, idOpintojakso]);
-        res.json({ message: "Opintojakso päivitetty", data: req.body });
+        await Opintojakso.updateOpintojakso(id, Nimi, Laajuus, Koodi);
+        res.json({ message: "Opintojakso päivitetty" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
 
+// DELETE
 exports.delete = async (req, res) => {
     try {
         const { id } = req.params;
-        await db.query("DELETE FROM Opintojakso WHERE idOpintojakso = ?", [id]);
+        await Opintojakso.deleteOpintojakso(id);
         res.json({ message: "Opintojakso poistettu" });
     } catch (err) {
         res.status(500).json({ error: err.message });

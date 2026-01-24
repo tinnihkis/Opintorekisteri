@@ -1,14 +1,11 @@
-const db = require('../config/db');
+const Arviointi = require('../models/arviointi');
 
 // CREATE
 exports.create = async (req, res) => {
     try {
-        const { idopiskelija, idOpintojakso, Paivamaara, Arvosana } = req.body;
-        await db.query(
-            "INSERT INTO Arviointi (idopiskelija, idOpintojakso, Paivamaara, Arvosana) VALUES (?, ?, ?, ?)",
-            [idopiskelija, idOpintojakso, Paivamaara, Arvosana]
-        );
-        res.json({ message: "Arviointi lisätty", data: req.body });
+        const { opiskelija_id, opintojakso_id, arvosana } = req.body;
+        await Arviointi.createArviointi(opiskelija_id, opintojakso_id, arvosana);
+        res.json({ message: "Arviointi lisätty" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -17,7 +14,7 @@ exports.create = async (req, res) => {
 // READ
 exports.getAll = async (req, res) => {
     try {
-        const [rows] = await db.query("SELECT * FROM Arviointi");
+        const [rows] = await Arviointi.getAllArvioinnit();
         res.json(rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -27,12 +24,10 @@ exports.getAll = async (req, res) => {
 // UPDATE
 exports.update = async (req, res) => {
     try {
-        const { idopiskelija, idOpintojakso, Paivamaara, Arvosana } = req.body;
-        await db.query(
-            "UPDATE Arviointi SET Paivamaara = ?, Arvosana = ? WHERE idopiskelija = ? AND idOpintojakso = ?",
-            [Paivamaara, Arvosana, idopiskelija, idOpintojakso]
-        );
-        res.json({ message: "Arviointi päivitetty", data: req.body });
+        const { id } = req.params;
+        const { arvosana } = req.body;
+        await Arviointi.updateArviointi(id, arvosana);
+        res.json({ message: "Arviointi päivitetty" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -41,11 +36,8 @@ exports.update = async (req, res) => {
 // DELETE
 exports.delete = async (req, res) => {
     try {
-        const { idopiskelija, idOpintojakso } = req.params;
-        await db.query(
-            "DELETE FROM Arviointi WHERE idopiskelija = ? AND idOpintojakso = ?",
-            [idopiskelija, idOpintojakso]
-        );
+        const { id } = req.params;
+        await Arviointi.deleteArviointi(id);
         res.json({ message: "Arviointi poistettu" });
     } catch (err) {
         res.status(500).json({ error: err.message });
