@@ -1,10 +1,9 @@
 # "Opintorekisteri" -tietokanta
 ![ER_KAAVIO](./ER_KAAVIO.png)
 
-## REST API:a ja MVC-arkkitehtuuria käyttävä MySQL/Node/Express -sovellus ilman käyttöliittymää
+**Taulut:**
+- **Opiskelija** (idopiskelija, Etunimi, Sukunimi, Osoite, Luokkatunnus)
+- **Opintojakso** (idOpintojakso, Nimi, Laajuus, Koodi)
+- **Arviointi** (idArviointi, Paivamaara, Arvosana, idOpiskelija, idOpintojakso)
 
-## Tietokanta muodostuu kolmesta taulusta: Opiskelija, Opintojakso ja Arviointi. Taulujen välillä on viiteavaimet
-
-## Operaatiot testataan Postman:lla
-
-## sivu kesken
+## REST API:a ja MVC-arkkitehtuuria käyttävä MySQL/Node/Express -sovellus ilman käyttöliittymää, jossa taulujen CRUD-operaatiot testataan Postman avulla
