@@ -32,3 +32,5 @@ Projektissa ei ole käyttöliittymää, vaan rajapintaa testataan Postman-työka
 ## Yhteenveto
 
 - Projekti opetti relaatiotietokannan suunnittelua, ER-kaavion laatimista sekä REST-API:n toteutusta Node.js-ympäristössä MVC-arkkitehtuuria hyödyntäen. Lisäksi projektissa harjoiteltiin CRUD-operaatioiden testaamista Postmanilla ja MySQL Stored Procedure -aliohjelmien käyttöä
+
+[Katso video](https://vimeo.com/1158087040?share=copy&fl=sv&fe=ci)
