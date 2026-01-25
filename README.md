@@ -26,15 +26,9 @@ Projektissa ei ole käyttöliittymää, vaan rajapintaa testataan Postman-työka
   - **DELETE:** poistaa tietueen id:n perusteella
 
 - **Routes:**  
-  Routes määrittelee URL-polut ja yhdistää ne oikeaan controllerin funktioon.  
-  Esimerkkejä:
-  - `/api/opiskelijat` → GET, POST  
-  - `/api/opiskelijat/:id` → PUT, DELETE  
-  - `/api/arvioinnit/keskiarvo/:id` → GET (Stored Procedure)
+  Routes määrittelee URL-polut ja yhdistää ne oikeaan controllerin funktioon.
 
-### CRUD-operaatiot ja Stored Procedure
+---
+## Yhteenveto
 
-Kaikille kolmelle taululle voidaan suorittaa **Create, Read, Update ja Delete**.  
-Näin voidaan hallita opiskelijoiden tietoja, opintojaksoja sekä arviointeja helposti Postmanin kautta.
-
-Tietokannassa on MySQL Stored Procedure `GetOpiskelijanKeskiarvo`, joka laskee valitun opiskelijan arviointien keskiarvon.
+- Projekti opetti relaatiotietokannan suunnittelua, ER-kaavion laatimista sekä REST-API:n toteutusta Node.js-ympäristössä MVC-arkkitehtuuria hyödyntäen. Lisäksi projektissa harjoiteltiin CRUD-operaatioiden testaamista Postmanilla ja MySQL Stored Procedure -aliohjelmien käyttöä
