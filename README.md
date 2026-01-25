@@ -5,17 +5,14 @@
 **Taulut:**
 - **Opiskelija** (idopiskelija, Etunimi, Sukunimi, Osoite, Luokkatunnus)
 - **Opintojakso** (idOpintojakso, Nimi, Laajuus, Koodi)
-- **Arviointi** (idArviointi, Paivamaara, Arvosana, idOpiskelija, idOpintojakso)
-**Yhteydet:**
-- Arviointi.idOpiskelija → Opiskelija.idopiskelija  
-- Arviointi.idOpintojakso → Opintojakso.idOpintojakso  
+- **Arviointi** (idArviointi, Paivamaara, Arvosana, idOpiskelija, idOpintojakso) idOpiskelija ja idOpintojakso ovat foreign key:tä, eli viittaavat toiseen tauluun(opiskelija ja opintojakso). Monesta moneen-suhde.
 
----
+--- 
+Yleiskuvaus
 
+Opintorekisteri on Node.js / Express / MySQL -pohjainen REST-API-projekti, jonka tarkoituksena on hallinnoida opiskelijoita, opintojaksoja ja arviointeja. Projekti noudattaa MVC-arkkitehtuuria ja mahdollistaa kaikkien tietokantataulujen CRUD-operaatiot REST-rajapinnan kautta.
 
-## Ohjelman toiminta
-
-Tämä projekti on toteutettu käyttämällä REST-API Node.js / Express / MySQL -alustaa, ja sen tarkoituksena on hallinnoida opiskelijoita, opintojaksoja ja arviointeja. Käytössä on ollut MVC-arkkitehtuuri. 
+Projektissa ei ole käyttöliittymää, vaan rajapintaa testataan Postman-työkalulla. Tietokanta on toteutettu MySQL:llä ja se ajetaan UniServer-ympäristössä. Sekä tietokanta että sovellus sijaitsevat paikallisella koneella.
 
 ### MVC-rakenne
 
